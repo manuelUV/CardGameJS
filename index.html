@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>CARD JS GAME</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="estilos.css">
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+  <div id="juego">
+    <table>
+      <tr>
+        <td id="0" class="letra" onclick="girarCarta(this)" data-valor="valor">?</td>
+        <td id="1" class="letra" onclick="girarCarta(this)" data-valor="valor">?</td>
+        <td id="2" class="letra" onclick="girarCarta(this)" data-valor="valor">?</td>
+        <td id="3" class="letra" onclick="girarCarta(this)" data-valor="valor">?</td>
+      </tr>
+      <tr>
+        <td id="4" class="letra" onclick="girarCarta(this)" data-valor="valor">?</td>
+        <td id="5" class="letra" onclick="girarCarta(this)" data-valor="valor">?</td>
+        <td id="6" class="letra" onclick="girarCarta(this)" data-valor="valor">?</td>
+        <td id="7" class="letra" onclick="girarCarta(this)" data-valor="valor">?</td>
+      </tr>
+      <tr>
+        <td id="8" class="letra" onclick="girarCarta(this)" data-valor="valor">?</td>
+        <td id="9" class="letra" onclick="girarCarta(this)" data-valor="valor">?</td>
+        <td id="10" class="letra" onclick="girarCarta(this)" data-valor="valor">?</td>
+        <td id="11" class="letra" onclick="girarCarta(this)" data-valor="valor">?</td>
+      </tr>
+      <tr>
+        <td id="12" class="letra" onclick="girarCarta(this)" data-valor="valor">?</td>
+        <td id="13" class="letra" onclick="girarCarta(this)" data-valor="valor">?</td>
+        <td id="14" class="letra" onclick="girarCarta(this)" data-valor="valor">?</td>
+        <td id="15" class="letra" onclick="girarCarta(this)" data-valor="valor">?</td>
+      </tr>
+    </table>
+  </div>
+  <div class="centrar">
+    <input type="button" value="Iniciar" onclick="iniciarJuego()">
+    <input type="button" value="Reset" onclick="resetearJuego()">
+  </div>
+<script>
+    var cartas = new Array({nombre:'1',seleccion:false},{nombre:'2',seleccion:false},
+                            {nombre:'3',seleccion:false},{nombre:'4',seleccion:false},{nombre:'5',seleccion:false},
+                            {nombre:'6',seleccion:false},{nombre:'7',seleccion:false},{nombre:'8',seleccion:false},
+                            {nombre:'1',seleccion:false},{nombre:'2',seleccion:false},
+                           {nombre:'3',seleccion:false},{nombre:'4',seleccion:false},{nombre:'5',seleccion:false},
+                            {nombre:'6',seleccion:false},{nombre:'7',seleccion:false},{nombre:'8',seleccion:false});
+
+    var jugada = "";
+    var jugada2 = "";
+    
+    var identificador1="";
+    var identificador2="";
+
+    function iniciarJuego(){
+      //Begin the game change it opacity
+      var dato = document.getElementById("juego");
+      dato.style.opacity = 1;
+
+      cartas.sort( function(){ return Math.random() - 0.5 } );
+   //asign the random numbers integer to the td elements
+      for(var i =0;i<16 ; i++){
+        var carta = cartas[i].nombre;
+        var valor = document.getElementById(i.toString());
+        valor.dataset.valor = carta;
+      }
+    };
+// we obtain the data-valor and id of the td element  
+      function girarCarta(e){
+        jugada2 = e.dataset.valor;
+        identificador2 = e.id;
+
+        if( jugada1 !==""){
+
+        }
+        else if (jugada2 !=="valor"){
+          colorCambio(identificador2,"blue",jugada2);
+          jugada1 = jugada2;
+          identificador1 = identificador2;
+        }
+      };
+      function colorCambio(posicion, color, contenido){
+        document.getElementById(posicion.toString()).style.backgroundColor = color;
+        document.getElementById(posicion.toString()).innerHTLM = contenido;
+        
+      }
+    
+</script>
+
+
+
+
+
+
+
+
+  
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>
