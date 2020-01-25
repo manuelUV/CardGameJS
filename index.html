@@ -6,7 +6,7 @@
   <title>CARD JS GAME</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="estilos.css">
+  <link rel="stylesheet" href="css/estilos.css">
   <meta name="theme-color" content="#fafafa">
 </head>
 
@@ -51,7 +51,7 @@
                            {nombre:'3',seleccion:false},{nombre:'4',seleccion:false},{nombre:'5',seleccion:false},
                             {nombre:'6',seleccion:false},{nombre:'7',seleccion:false},{nombre:'8',seleccion:false});
 
-    var jugada = "";
+    var jugada1 = "";
     var jugada2 = "";
     
     var identificador1="";
@@ -75,10 +75,27 @@
         jugada2 = e.dataset.valor;
         identificador2 = e.id;
 
-        if( jugada1 !==""){
-
+      if(jugada1 !== ""){
+        if( jugada1 === jugada2 && identificador1 !==
+          identificador2 && carta[parseInt(identificador2)
+          ].seleccion != true && carta[parseInt(
+            identificador1)].seleccion != true){
+            //begin if
+            colorCambio(identificador2, "blue", jugada2);
+            vaciar();
+            comprobar();
+          
         }
-        else if (jugada2 !=="valor"){
+        else
+        {
+          setTimeout(function(){
+            colorCambio(identificador1, "black","?");
+            colorCambio(identificador2, "black","?");
+            vaciar();
+          },1000);
+          colorCambio(identificador2,"blue",jugada2);
+        }
+      }  else if (jugada2 !=="valor"){   
           colorCambio(identificador2,"blue",jugada2);
           jugada1 = jugada2;
           identificador1 = identificador2;
@@ -86,8 +103,26 @@
       };
       function colorCambio(posicion, color, contenido){
         document.getElementById(posicion.toString()).style.backgroundColor = color;
-        document.getElementById(posicion.toString()).innerHTLM = contenido;
+        document.getElementById(posicion).innerHTML = contenido;
         
+      }
+      function vaciar(){
+        jugada1 = "";
+        jugada2 = "";
+
+        identificador1 = "";
+        identificador2 = "";
+      }
+      function comprobar (){
+        var aciertos =0;
+        for (let i=0; i <16 ; i++){
+          if(cartas[i].seleccion == true){
+            aciertos ++;
+          }
+        }
+        if(aciertos == 16 ){
+          document.getElementById("juego").innerHTML = "GANASTE";
+        }
       }
     
 </script>
